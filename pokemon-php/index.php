@@ -254,11 +254,19 @@ include('assets/php/main.php');
                       $pokeurl = "https://pokeapi.co/api/v2/pokemon/";
                       $url = "https://pokeapi.co/api/v2/pokemon/".$_POST['search_by_name'];
                       $json = file_get_contents($url);
-                      $obj = json_decode($json);
-                      echo 'document.getElementById("nb").value = "'.$obj->id.'";';
-                      $img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/".$obj->id.".png";
-                      echo 'document.getElementById("screen_image").src = "'.$img.'";';
-                      echo 'document.getElementById("info-screen").innerHTML = "'.$_POST['search_by_name'].'";';
+
+                      //convert to assoc array to check if fetch is empty
+                      if (count(json_decode($json,1))==0){
+                          $msg = 'did not find anything';
+                          echo 'document.getElementById("info-screen").innerHTML = "'.$msg.'";';
+                      }
+                      else{
+                          $obj = json_decode($json);
+                          echo 'document.getElementById("nb").value = "'.$obj->id.'";';
+                          $img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/".$obj->id.".png";
+                          echo 'document.getElementById("screen_image").src = "'.$img.'";';
+                          echo 'document.getElementById("info-screen").innerHTML = "'.$_POST['search_by_name'].'";';
+                      }
 
                   }
               }
