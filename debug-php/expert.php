@@ -53,9 +53,6 @@ foreach($week as &$day) {
 
 print_r($week);
 
-
-
-
 new_exercise(5);
 // === Exercise 5 ===
 // The array should be printing every letter of the alfabet (a-z) but instead it does that + aa-yz
@@ -74,23 +71,24 @@ for ($letter = 'a'; $letter <= 'z'; $letter++) {
 
 print_r($arr); // Array ([0] => a, [1] => b, [2] => c, ...) a-z alfabetical array
 
-/*
+
 new_exercise(6);
 // === Final exercise ===
 // The fixed code should echo the following at the bottom:
 // Here is the name: $name - $name2
 // $name variables are decided as seen in the code, fix all the bugs whilst keeping the functionality!
+
 $arr = [];
 
 
 function combineNames($str1 = "", $str2 = "") {
     $params = [$str1, $str2];
-    foreach($params as $param) {
+    foreach($params as &$param) {
         if ($param == "") {
             $param = randomHeroName();
         }
     }
-    echo implode($params, " - ");
+    return implode($params, " - ");
 }
 
 
@@ -105,64 +103,81 @@ function randomGenerate($arr, $amount) {
 function randomHeroName()
 {
     $hero_firstnames = ["captain", "doctor", "iron", "Hank", "ant", "Wasp", "the", "Hawk", "Spider", "Black", "Carol"];
-    $hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil", "marvel"]
+    $hero_lastnames = ["America", "Strange", "man", "Pym", "girl", "hulk", "eye", "widow", "panther", "daredevil", "marvel"];
     $heroes = [$hero_firstnames, $hero_lastnames];
-    $randname = $heroes[rand(0,count($heroes))][rand(0, 10)];
+    $randname = $heroes[rand(0,count($heroes)-1)][rand(0, 10)];
 
-    echo $randname;
+    return $randname;
 }
 
 echo "Here is the name: " . combineNames();
+
 
 new_exercise(7);
 function copyright(int $year) {
     return "&copy; $year BeCode";
 }
 //print the copyright
-copyright(date('Y'));
+echo(copyright((int)date('Y')));
+
 
 new_exercise(8);
 function login(string $email, string $password) {
     if($email == 'john@example.be' || $password == 'pocahontas') {
-        return 'Welcome John';
-        return ' Smith';
+        return 'Welcome John'.' Smith'."<br>";
     }
-    return 'No access';
+    return 'No access'."<br>";
 }
 //should great the user with his full name (John Smith)
 $login = login('john@example', 'pocahontas');
+echo $login;
 //no access
 $login = login('john@example', 'dfgidfgdfg');
+echo $login;
 //no access
 $login = login('wrong@example', 'wrong');
+echo $login;
 
 new_exercise(9);
 function isLinkValid(string $link) {
     $unacceptables = array('https:','.doc','.pdf', '.jpg', '.jpeg', '.gif', '.bmp', '.png');
 
     foreach ($unacceptables as $unacceptable) {
-        if (strpos($link, $unacceptable) == true) {
-            return 'Unacceptable Found<br />';
+        if (strpos($link, $unacceptable) !== false) {
+            return 'Unacceptable Found<br>';
         }
     }
     return 'Acceptable<br />';
 }
 //invalid link
-isLinkValid('http://www.google.com/hack.pdf');
+$link = isLinkValid('http://www.google.com/hack.pdf');
+echo $link;
 //invalid link
-isLinkValid('https://google.com');
+$link = isLinkValid('https://google.com');
+echo $link;
 //VALID link
-isLinkValid('http://google.com');
+$link = isLinkValid('http://google.com');
+echo $link;
 //VALID link
-isLinkValid('http://google.com/test.txt');
+$link = isLinkValid('http://google.com/test.txt');
+echo $link;
+
 
 new_exercise(10);
-$areThesefruits = ['apple', 'pear', 'banana', 'cherry', 'tomato', 'beef'];
-$validFruits = ['apple', 'bear', 'banana', 'cherry', 'tomato'];
-for($i=0; $i <= count($areThesefruits); $i++) {
-    if(!in_array($areThesefruits[$i], $validFruits)) {
-        unset($areThesefruits[$i]);
+
+//Filter the array $areTheseFruits to only contain valid fruits
+//do not change the arrays itself
+$areTheseFruits = ['apple', 'bear', 'beef', 'banana', 'cherry', 'tomato', 'car'];
+$validFruits = ['apple', 'pear', 'banana', 'cherry', 'tomato'];
+
+$diff = count($areTheseFruits)-count($validFruits);
+for($i=0; $i <= count($areTheseFruits)+$diff; $i++) {
+
+    if(!in_array($areTheseFruits[$i], $validFruits)) {
+        unset($areTheseFruits[$i]);
     }
+
+
 }
-var_dump($validFruits);
-*/
+var_dump($areTheseFruits);//do not change this
+
