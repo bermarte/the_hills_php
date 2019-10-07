@@ -17,6 +17,10 @@ function new_exercise($x) {
     $block = "<br/><hr/><br/><br/>Exercise $x starts here:<br/>";
     echo $block;
 }
+
+// === Solution ===
+// Adding a $x parameter
+
 new_exercise(2);
 /***************************/
 // === Exercise 2 ===
@@ -28,6 +32,8 @@ $monday = $week[0];
 
 echo $monday;
 
+// === Solution ===
+// to get the first element of the array: $week[0]
 
 new_exercise(3);
 // === Exercise 3 ===
@@ -36,8 +42,8 @@ new_exercise(3);
 $str = "Debugged ! Also very fun";
 echo substr($str, 0, 10 );
 
-
-
+// === Solution ===
+// added double quotes to the string
 
 new_exercise(4);
 
@@ -52,6 +58,9 @@ foreach($week as &$day) {
 }
 
 print_r($week);
+
+// === Solution ===
+// added a & before the $day
 
 new_exercise(5);
 // === Exercise 5 ===
@@ -71,6 +80,8 @@ for ($letter = 'a'; $letter <= 'z'; $letter++) {
 
 print_r($arr); // Array ([0] => a, [1] => b, [2] => c, ...) a-z alfabetical array
 
+// === Solution ===
+// adding a condition and a counter to stop the for loop when 'z' ($len == 27) is reached
 
 new_exercise(6);
 // === Final exercise ===
@@ -112,6 +123,11 @@ function randomHeroName()
 
 echo "Here is the name: " . combineNames();
 
+// === Solution ===
+// changed echos to returns
+//adding -1 to count($heroes) in $randname
+//adding & to param in foreach($params as &$param)
+//removing an extra function, randomgenerate
 
 new_exercise(7);
 function copyright(int $year) {
@@ -120,6 +136,9 @@ function copyright(int $year) {
 //print the copyright
 echo(copyright((int)date('Y')));
 
+// === Solution ===
+// casting date to int
+//echoing the result of the function
 
 new_exercise(8);
 function login(string $email, string $password) {
@@ -137,6 +156,10 @@ echo $login;
 //no access
 $login = login('wrong@example', 'wrong');
 echo $login;
+
+// === Solution ===
+// combining first with second name in a string
+//added echos
 
 new_exercise(9);
 function isLinkValid(string $link) {
@@ -162,6 +185,10 @@ echo $link;
 $link = isLinkValid('http://google.com/test.txt');
 echo $link;
 
+// === Solution ===
+// adding echos
+//adding strpos($link, $unacceptable) !== false
+//because the first 'https' is not being picked up
 
 new_exercise(10);
 
@@ -181,3 +208,6 @@ for($i=0; $i <= count($areTheseFruits)+$diff; $i++) {
 }
 var_dump($areTheseFruits);//do not change this
 
+// === Solution ===
+// changing < to <=
+//adding the difference between the length of the two arrays
