@@ -13,7 +13,7 @@ declare(strict_types=1);
 // sometimes, even your IDE can tell you what's wrong
 echo "Exercise 1 starts here:";
 
-function new_exercise($x) {
+function new_exercise(int $x) {
     $block = "<br/><hr/><br/><br/>Exercise $x starts here:<br/>";
     echo $block;
 }
@@ -41,9 +41,12 @@ new_exercise(3);
 
 $str = "Debugged ! Also very fun";
 echo substr($str, 0, 10 );
+//use instead mb_substr()
 
 // === Solution ===
 // added double quotes to the string
+//wrong symbols for "
+//this character “ is multibyte
 
 new_exercise(4);
 
@@ -60,7 +63,10 @@ foreach($week as &$day) {
 print_r($week);
 
 // === Solution ===
-// added a & before the $day
+// added a & (ampersand) before the $day
+//value vs reference:
+//by default php passing a function by value
+//memory location: passing value by reference
 
 new_exercise(5);
 // === Exercise 5 ===
@@ -82,9 +88,10 @@ print_r($arr); // Array ([0] => a, [1] => b, [2] => c, ...) a-z alfabetical arra
 
 // === Solution ===
 // adding a condition and a counter to stop the for loop when 'z' ($len == 27) is reached
+//better using range function or ord()
 
 new_exercise(6);
-// === Final exercise ===
+// === exercise 6 ===
 // The fixed code should echo the following at the bottom:
 // Here is the name: $name - $name2
 // $name variables are decided as seen in the code, fix all the bugs whilst keeping the functionality!
@@ -189,11 +196,14 @@ echo $link;
 // adding echos
 //adding strpos($link, $unacceptable) !== false
 //because the first 'https' is not being picked up
+//strpos should check type and value
+//otherwise is automatically casting
 
 new_exercise(10);
 
 //Filter the array $areTheseFruits to only contain valid fruits
 //do not change the arrays itself
+
 $areTheseFruits = ['apple', 'bear', 'beef', 'banana', 'cherry', 'tomato', 'car'];
 $validFruits = ['apple', 'pear', 'banana', 'cherry', 'tomato'];
 
@@ -211,3 +221,5 @@ var_dump($areTheseFruits);//do not change this
 // === Solution ===
 // changing < to <=
 //adding the difference between the length of the two arrays
+//or use a foreach
+//foreach($areTheseFruits AS $key => $fruit){...}
