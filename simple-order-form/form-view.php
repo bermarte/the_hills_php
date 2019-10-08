@@ -93,11 +93,23 @@ declare(strict_types=1);
                     <!-- ndelivery method -->
                     <fieldset>
                         <legend>Delivery</legend>
-                    <select class="browser-default custom-select">
-                        <option value="normal" selected>Normal</option>
-                        <option value="fast">Fast</option>
+                        <select name="delivery" class="browser-default custom-select">
+                        <?php
+                        $delivery_time = "";
+                        if ($_SESSION['delivery']=== 'normal'){
+                             $delivery_time = "2 hours";
+                             echo "<option value='normal' selected>Normal</option>
+                                   <option value='fast'>Fast</option>";
+                        }
+                        else{
+                            $delivery_time = "45 minutes";
+                            echo "<option value'normal'>Normal</option>
+                                  <option value='fast' selected>Fast</option>";
+                        };
+                        ?>
 
                     </select>
+
                     </fieldset>
                 </div>
             </div>
@@ -105,6 +117,9 @@ declare(strict_types=1);
 
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
+    <!-- to be removed later -->
+   <?php echo 'to be delivered in '.$delivery_time;?>
+
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>

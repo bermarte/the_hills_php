@@ -66,8 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['city'] = $city;
     $_SESSION['zipcode'] = $zipcode;
 
-
-
     /*
     echo $email."<br>";
     echo $street."<br>";
@@ -87,6 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         checkStreetNumber($streetnumber), checkCity($city),
         checkZipCode($zipcode)
     );
+
+    //type of delivery
+    $delivery = $_POST["delivery"];
+    $_SESSION['delivery'] = $delivery;
+    checkTimeDelivery($_POST["delivery"]);
 }
 
 function test_input($data) {
@@ -180,5 +183,6 @@ function checkInputs($val1,$val2,$val3,$val4,$val5){
         return;
     }
 }
+
 
 
