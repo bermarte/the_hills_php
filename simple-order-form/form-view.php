@@ -103,7 +103,7 @@ declare(strict_types=1);
                         }
                         else{
                             $delivery_time = "45 minutes";
-                            echo "<option value'normal'>Normal</option>
+                            echo "<option value='normal'>Normal</option>
                                   <option value='fast' selected>Fast</option>";
                         };
                         ?>

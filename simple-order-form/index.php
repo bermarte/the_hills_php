@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //type of delivery
     $delivery = $_POST["delivery"];
     $_SESSION['delivery'] = $delivery;
-    checkTimeDelivery($_POST["delivery"]);
+    //checkTimeDelivery($_POST["delivery"]);
 }
 
 function test_input($data) {
