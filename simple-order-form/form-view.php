@@ -1,3 +1,7 @@
+<?php
+declare(strict_types=1);
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +15,7 @@
 </head>
 <body>
 <div class="container">
+
     <h1>Order food in restaurant "the Personal Ham Processors"</h1>
     <nav>
         <ul class="nav">
@@ -22,11 +27,27 @@
             </li>
         </ul>
     </nav>
-    <form method="post">
+    <?php
+    //modal error
+    if (isset($_SESSION['error'])){
+        echo "<div id='alert' class='alert alert-danger'>
+        <strong>Warning!</strong>&nbsp;".$_SESSION['error']."!&nbsp;&nbsp;<br>
+        </div>";
+        unset($_SESSION['error']);
+    }
+    //modal success
+    if (isset($_SESSION['success'])){
+        echo "<div id='success' class='alert alert-success'>
+        <strong>Success!</strong>&nbsp;".$_SESSION['success']."!&nbsp;&nbsp;<br>
+        </div>";
+        unset($_SESSION['success']);
+    }
+    ?>
+    <form method="post" action="index.php">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" class="form-control"/>
+                    <input type="text" id="email" name="email" class="form-control" required value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email'];?>">
             </div>
             <div></div>
         </div>
@@ -37,33 +58,50 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" id="street" class="form-control">
+                    <input type="text" name="street" id="street" class="form-control" required value="<?php if (isset($_SESSION['street'])) echo $_SESSION['street'];?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" required value="<?php if (isset($_SESSION['streetnumber'])) echo $_SESSION['streetnumber'];?>">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control">
+                    <input type="text" id="city" name="city" class="form-control" required value="<?php if (isset($_SESSION['city'])) echo $_SESSION['city'];?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" required value="<?php if (isset($_SESSION['zipcode'])) echo $_SESSION['zipcode'];?>">
                 </div>
             </div>
         </fieldset>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <fieldset>
+                        <legend>Products</legend>
+                        <?php foreach ($products AS $i => $product): ?>
+                            <label>
+                                <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
+                                &euro; <?php echo number_format($product['price'], 2) ?></label><br />
+                        <?php endforeach; ?>
+                    </fieldset>
+                </div>
+                <div class="col-sm">
 
-        <fieldset>
-            <legend>Products</legend>
-            <?php foreach ($products AS $i => $product): ?>
-                <label>
-                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
-                    &euro; <?php echo number_format($product['price'], 2) ?></label><br />
-            <?php endforeach; ?>
-        </fieldset>
+                    <!-- ndelivery method -->
+                    <fieldset>
+                        <legend>Delivery</legend>
+                    <select class="browser-default custom-select">
+                        <option value="normal" selected>Normal</option>
+                        <option value="fast">Fast</option>
+
+                    </select>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
 
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
