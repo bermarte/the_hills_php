@@ -20,10 +20,10 @@ declare(strict_types=1);
     <nav>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active" href="?food=1">Order food</a>
+                <a class="nav-link active" href="index.php?food=1" name="food">Order food</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?food=0">Order drinks</a>
+                <a class="nav-link" href="index.php?food=0" name="food">Order drinks</a>
             </li>
         </ul>
     </nav>
