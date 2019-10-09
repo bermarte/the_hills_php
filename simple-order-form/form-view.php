@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-
+if(!defined('MyConst')) {
+    die('Direct access not permitted');
+}
 ?>
 <!doctype html>
 <html lang="en">

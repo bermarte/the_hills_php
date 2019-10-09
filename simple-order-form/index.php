@@ -6,6 +6,9 @@ declare(strict_types=1);
 session_start();
 //https://stackoverflow.com/questions/8028957/how-to-fix-headers-already-sent-error-in-php
 ob_start();
+//cannot open this page directly
+//https://stackoverflow.com/questions/409496/prevent-direct-access-to-a-php-include-file 176
+define('MyConst', TRUE);
 
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
