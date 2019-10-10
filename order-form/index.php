@@ -20,9 +20,9 @@ function whatIsHappening() {
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION);
 }
-//whatIsHappening();
+whatIsHappening();
 //your products with their price.
-
+//isset($_GET["food"])==1 && $_GET["food"]==1))
     if ((isset($_GET["food"]) && $_GET["food"]==1) || !isset($_GET["food"])){
         $products = [
             ['name' => 'Club Ham', 'price' => 3.20],
@@ -31,7 +31,10 @@ function whatIsHappening() {
             ['name' => 'Club Chicken', 'price' => 4],
             ['name' => 'Club Salmon', 'price' => 5]
         ];
+        //$_SESSION['get_products']= $products;
+
     };
+    //if (isset($_GET["food"]) && $_GET["food"]==0)
     if (isset($_GET["food"]) && $_GET["food"]==0){
         $products = [
             ['name' => 'Cola', 'price' => 2],
@@ -39,6 +42,8 @@ function whatIsHappening() {
             ['name' => 'Sprite', 'price' => 2],
             ['name' => 'Ice-tea', 'price' => 3],
         ];
+        //$_SESSION['get_products']= $products;
+
     };
 
 
@@ -86,14 +91,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     checkInputs(
         checkEmail($email), checkStreet($street),
         checkStreetNumber($streetnumber), checkCity($city),
-        checkZipCode($zipcode)
+        checkZipCode($zipcode),
+        checkProducts($products)
     );
 
     //type of delivery
     $delivery = $_POST["delivery"];
     $_SESSION['delivery'] = $delivery;
-    //checkTimeDelivery($_POST["delivery"]);
+
+
+    //products selected
+    $productsChoosen = $_POST["products"];
+    print_r($productsChoosen);
+
+    checkProducts($productsChoosen);
+
 }
+
+//var_dump($products);
 
 function test_input($data) {
     $data = trim($data);
@@ -178,13 +193,24 @@ function isValidZipCode($val) {
     return (preg_match('/^[0-9]{5}(-[0-9]{4})?$/', $val)) ? true : false;
 }
 //check if all inputs are true
-function checkInputs($val1,$val2,$val3,$val4,$val5){
-    if ($val1=== true && $val2=== true && $val3=== true && $val4=== true && $val5=== true){
+function checkInputs($val1,$val2,$val3,$val4,$val5, $val6){
+    if ($val1=== true && $val2=== true && $val3=== true && $val4=== true && $val5=== true && $val6=== true){
         $msg = "Your order is been sent";
         $_SESSION['success'] = $msg;
         header('Location: index.php');
         return;
     }
+}
+//check products
+function checkProducts($val){
+
+    if (empty($val) || $val=="") {
+        $emailErr = "You must select at list one product";
+        $_SESSION['error'] = $emailErr;
+        header('Location: index.php');
+        return;
+    }
+
 }
 
 

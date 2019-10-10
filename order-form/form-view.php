@@ -25,7 +25,7 @@ if(!defined('MyConst')) {
                 <a class="nav-link active" href="index.php?food=1" name="food">Order food</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?food=0" name="food">Order drinks</a>
+                <a class="nav-link" href="index.php?food=0" name="drink">Order drinks</a>
             </li>
         </ul>
     </nav>
@@ -98,7 +98,7 @@ if(!defined('MyConst')) {
                         <select name="delivery" class="browser-default custom-select">
                         <?php
                         $delivery_time = "";
-                        if ($_SESSION['delivery']=== 'normal'){
+                        if ($_SESSION['delivery']== 'normal' || !isset($_SESSION['delivery']) || $_SESSION['delivery']==""){
                              $delivery_time = "2 hours";
                              echo "<option value='normal' selected>Normal</option>
                                    <option value='fast'>Fast</option>";
@@ -119,8 +119,21 @@ if(!defined('MyConst')) {
 
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
+    <?php echo "<br>"?>
     <!-- to be removed later -->
-   <?php echo 'to be delivered in '.$delivery_time;?>
+   <?php echo 'To be delivered in '.$delivery_time;?>
+   <?php
+   //$_SESSION['get_products']= $products;
+   if (isset($_POST["products"])){
+       echo "<hr>";
+
+       foreach ($_POST["products"] as $key => $value){
+           echo  'You selected: '.$products[$key]['name']. ' price: '.$products[$key]['price']." euro<br>";
+           $totalValue += $products[$key]['price'];
+       }
+   }
+   ?>
+
 
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
