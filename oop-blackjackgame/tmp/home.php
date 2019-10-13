@@ -1,3 +1,12 @@
+<?php
+session_start();
+$_SESSION['score'] = 0;
+
+
+unset($_SESSION['player']);
+unset($_SESSION['dealer']);
+
+?>
 <!doctype html>
 <html lang="eng">
 <head>
