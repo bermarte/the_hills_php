@@ -38,13 +38,29 @@ function whatIsHappening() {
 
 
 if(isset($_GET['hit'])) {
+
     $hit = $player->Hit();
     $_SESSION['player'] = $player;
     array_push($_SESSION['counter_player'], $hit);
     echo " your cards: ". implode(", ",$_SESSION['counter_player']);
+
+    if ($_SESSION['player']->getScore() > 21){
+        echo "<hr>";
+        echo "dealer wins";//1
+        $_SESSION['game_end']="1";
+    }
+
+     elseif ($_SESSION['player']->getScore() == 21){
+            echo "<hr>";
+            echo "player wins";
+            $_SESSION['game_end']="1";
+    }
+
 }
 if(isset($_GET['surrender'])) {
     echo($player->Surrender());
+    echo "<hr>";
+    echo "dealer wins";
     unset($_SESSION['counter_player']);
     unset($_SESSION['counter_dealer']);
     $_SESSION['game_end']="1";
@@ -74,22 +90,21 @@ if(isset($_GET['stand'])) {
         if ($_SESSION['dealer']->getScore() > 21){
             echo "player wins";
             $_SESSION['game_end'] = "1";
-
         }
         if ($_SESSION['player']->getScore() > $_SESSION['dealer']->getScore()){
             echo "player wins";
             $_SESSION['game_end'] = "1";
-
         }
         elseif ($_SESSION['player']->getScore() == $_SESSION['dealer']->getScore()){
             echo "tie";
             $_SESSION['game_end'] = "1";
         }
 
-        else{
+        elseif ($_SESSION['dealer']->getScore()< 21){
             echo "dealer wins";
             $_SESSION['game_end'] = "1";
         }
+
     }
 
 }
@@ -125,5 +140,5 @@ if (isset($_SESSION['game_end'])){
          ";
     }
 }
-
 //whatIsHappening();
+
