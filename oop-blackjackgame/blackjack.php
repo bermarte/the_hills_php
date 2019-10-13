@@ -5,27 +5,14 @@ ini_set('display_errors', "1");
 ini_set('display_startup_errors', "1");
 error_reporting(E_ALL);
 
-//$score_now = $_SESSION['player'];
-
-//var_dump($_SESSION['player']);
 
 //classes
 class Blackjack {
     private $score = 0;
-    //public $name ="player";
     const MIN = 1;
     const MAX = 11;
     const BJ_MAX= 21;
-    public $cards = [];
 
-    public function getCards(): array
-    {
-        return $this->cards;
-    }
-    public function addCards($val)
-    {
-        array_push($this->cards, $val);
-    }
 
     public function __construct(int $score)
     {
