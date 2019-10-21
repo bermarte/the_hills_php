@@ -1,0 +1,25 @@
+*{
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #222;
+}
+body{
+    background-color: #222;
+}
+.col-sm,
+.text-center, div,form,p, strong,h2{
+    background-color: #adaeff;
+}
+.container{
+    width: 90%;
+    background-color: #adaeff;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 6px;
+}
+select option {
+    margin: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
