@@ -1,0 +1,16 @@
+*{
+    margin: 0 auto;
+    box-sizing: border-box;
+    /*background-color: #222;*/
+}
+body{
+    /*background-color: #222;*/
+}
+
+.container{
+    width: 90%;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 6px;
+    /*background-color: #adaeff;*/
+}
