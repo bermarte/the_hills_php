@@ -3,6 +3,7 @@ session_start();
 require 'connection.php';
 require 'auth.php';
 
+
 ?>
 <!doctype html>
 <html lang="en">

@@ -3,6 +3,9 @@ session_start();
 
 require 'connection.php';
 
+if (!isset($_SESSION['logged'])) {
+    header('Location: login.php');
+}
 if (!isset($_GET['user'])){
     header('Location: index.php');
     return;

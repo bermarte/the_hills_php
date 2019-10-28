@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['logged'])) {
+    header('Location: login.php');
+}
 //echo $_SESSION['user_name_registration'];
 if ( isset($_SESSION['user_name_registration'])){
     $_SESSION['user_name'] = $_SESSION['user_name_registration'];

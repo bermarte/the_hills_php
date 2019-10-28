@@ -1,6 +1,10 @@
 <?php
-
+session_start();
 require 'connection.php';
+if (!isset($_SESSION['logged'])){
+    header('Location: login.php');
+    return;
+}
 
 
 //$_SESSION['what_to_edit']= 'edit.php?user='.$user['id'];

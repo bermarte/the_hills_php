@@ -6,6 +6,8 @@ session_start();
 session_destroy();
 session_start();
 
+//if !$_SESSION['logged']= true exit
+
 
 if (isset($_POST['register'])){
 
@@ -22,6 +24,7 @@ if (isset($_POST['register'])){
        $_SESSION['tmp_password']= $_POST['password'];
        $_SESSION['success'] = 'user name and password created';
        $_SESSION['warning'] = 'please complete the creation of your user';
+       $_SESSION['logged']= true;
        header('Location: insert.php');
        return;
    }
@@ -53,6 +56,8 @@ if (isset($_POST['enter_login'])){
     {
         $_SESSION['can_edit']= true;
         $_SESSION['what_to_edit']= 'edit.php?user='.$user['id'];
+
+        $_SESSION['logged']= true;
 
         header('Location: profile.php?user='.$user['id']);
         return;

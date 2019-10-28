@@ -1,6 +1,11 @@
 <?php
 session_start();
 require 'connection.php';
+
+if (!isset($_SESSION['logged'])) {
+    header('Location: login.php');
+}
+
 $limit = 50;
 /** @noinspection SqlResolve */
 $stmt = openConnection()->prepare("SELECT * FROM student LIMIT :limit");
