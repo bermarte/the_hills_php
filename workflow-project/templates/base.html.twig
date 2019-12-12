@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}Welcome!{% endblock %}
+        </title>
+        <!--{% block stylesheets %}{% endblock %}-->
+        <!-- https://www.bootstrapcdn.com/bootswatch/ -->
+        <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-w+8Gqjk9Cuo6XH9HKHG5t5I1VR4YBNdPt/29vwgfZR485eoEJZ8rJRbm3TR32P6k" crossorigin="anonymous">
+        <style>
+            .bg-light{
+                background-color: #212121 !important;
+            }
+            .success-text{
+                color: black;
+                font-size: 20px;
+            }
+            .data{
+                font-size: 17px;
+                letter-spacing: 1px;
+            }
+            .user-title{
+                position: relative;
+                top: -28px;
+                font-size: 17px;
+
+            }
+            .user-title-bigger{
+                font-size: 20px;
+                letter-spacing: 1px;
+            }
+        </style>
+    </head>
+    <body>
+    {{ include('/include/navbar.html.twig') }}
+        {% block body %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

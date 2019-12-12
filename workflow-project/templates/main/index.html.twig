@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Workflow-project {% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h1 class="display-4">Workflow-project</h1>
+        <p class="lead">from Becode</p>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <div class="control-group">
+
+                {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <div class="col">
+                        <p class="text-center">Login or Register</p>
+                        <div class="text-center">
+                        <a class="btn btn-primary btn-lg mr-4" href="/login" role="button">Login</a>
+
+                        <a class="btn btn-primary btn-lg mr-4" href="/register" role="button">Register</a>
+                    </div>
+                    </div>
+            {% endif %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <h2 class="text-center">Welcome user {{ app.user.email }}</h2>
+                    <div class="col text-center">
+
+                        {% for msg in app.session.flashbag.get('notice') %}
+                            <div class="alert alert-{{ msg.type }} {{ msg.type }}-text">
+                                <strong>{{ msg.title }}</strong><br/>{{ msg.message }}
+                            </div>
+                        {% endfor %}
+
+                        <a class="btn btn-primary btn-lg mr-4" href="{{ path('user_name') }}" role="button">set/update data</a>
+                        <a class="btn btn-primary btn-lg mr-4" href="{{ path('ticket_index') }}" role="button">tickets</a>
+                    </div>
+            {% endif %}
+                </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ticket{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron">
+        <div class="text-center user-title">user: <strong class="user-title-bigger">{{ app.user.email }}</strong></div>
+        <div class="row">
+            <div class="col">
+                <div class="card bg-light">
+                    <h1 class="ml-2">Create new Ticket</h1>
+
+                    {{ include('ticket/_form.html.twig') }}
+
+                    <a href="{{ path('ticket_index') }}" class="m-2">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

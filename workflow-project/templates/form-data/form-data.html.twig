@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Workflow-project {% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+    <div class="row">
+    <div class="col-6 offset-3">
+    <div class="card bg-light">
+
+        <div class="container mt-2 data"><strong>User Mail:</strong> {{ app.user.email }}<br>
+           <strong>Id:</strong> {{ app.user.id }}<br>
+           <strong>Role:</strong> Customer</div>
+        <div class="card-body">
+            {{ form_start(form_user_name) }}
+            {{ form_widget(form_user_name) }}
+            <button class="btn btn-primary btn-block">Save</button>
+            {{ form_end(form_user_name) }}
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

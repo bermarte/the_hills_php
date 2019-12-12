@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket index{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="jumbotron">
+    {# we need the user role #}
+    {% set role_user = '' %}
+    {% for role in app.user.roles %}
+        {% if role == "ROLE_CUSTOMER" %}
+            {% set role_user = 'user' %}
+        {% endif %}
+        {% if role == "ROLE_AGENT" %}
+            {% set role_user = 'agent' %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="text-center user-title">{{ role_user }}: <strong class="user-title-bigger">{{ app.user.email }}</strong></div>
+    <div class="row">
+        <div class="col">
+            <div class="card bg-light">
+
+                <h1 class="ml-2">Tickets</h1>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ticket id</th>
+                            <th>Text body</th>
+                            <th>Open</th>
+                            <th>Comment</th>
+                            <th>User id</th>
+                            <th>Actions</th>
+                            <!--
+                            <th>Is_public</th>
+                            <th>Is_in_progress</th>-
+                            <th>Agent_coment</th>
+                            <th>Is_waiting_for_feedback</th>
+                            <th>Is_escalated</th>
+                            <th>User_id</th>
+                            <th>actions</th>
+                            -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for ticket in tickets %}
+                    {% if ticket.userId == app.user.id %}
+                        <tr>
+                            <td>{{ ticket.id }}</td>
+                            <td>{{ ticket.textBody }}</td>
+                            <td>{{ ticket.isOpen ? 'Yes' : 'No' }}</td>
+                            <td>{{ ticket.customerComment }}</td>
+                            <td>{{ ticket.userId }}</td>
+                            <td>
+                                <a href="{{ path('ticket_show', {'id': ticket.id}) }}">show</a>
+                                <a href="{{ path('ticket_edit', {'id': ticket.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% else %}
+                        <tr>
+                            <td>no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('ticket_new') }}" class="m-2">Create new</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
