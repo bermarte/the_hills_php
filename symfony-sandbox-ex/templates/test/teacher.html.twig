@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Bermarte!{% endblock %}
+
+{% block body %}
+<ul>
+    <!-- student.name would be <?php $student->getName(); ?>-->
+    <li>Name: {{ teacher.name }}</li>
+    <li>Email: {{ teacher.email }}</li>
+</ul>
+    <h3>Students</h3>
+    <ul>
+    {% for student in teacher.students %}
+        <li><a href="{{ path('view_student', {student: student.id}) }}">{{ student.name }}</a></li>
+
+    {% endfor %}
+    </ul>
+{% endblock %}
